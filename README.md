@@ -2,12 +2,34 @@
 
 ## Introduction
 
-## ProTEX
+We are looking for the appropriate tool to automatically documenation from the source code.
+Through the dcumentation, we want to have a good understanding of all the public routines (API) and how they interact.
+We expect the documentation to:
+
+- Provide a description of the purpose and input/output arguments of the API.
+- Provide a description of the module containg the API.
+
+The tool creating the documentation needs to:
+
+- Provide features for specially placed and formatted comments around modules/subroutines.
+- Extract source code comments to gererate documenation
+- Generate documentation that can be inspected without looking into the code (e.g. HTML-pages, PDF-document, etc.)
+- Provide enough information on modules so that they can be reused without knowing the internal code details.
+- Generate documentation in a variety of formats (specially browsable).
+
+We are considering ProTex, Doxygen and FORD. 
+We here provide a brief description of the three tools and compare their main features.
+
+## [ProTEX](http://wiki.seas.harvard.edu/geos-chem/index.php/Automatic_documentation_with_protex)
+
+- Perl script that can strip information from a standard Fortran document header and save that to a LaTeX file.
+
 
 ## [Doxygen](https://www.doxygen.nl/index.html)
 
 - An automatic documentation tool
 - Supports pretty printing, call graph generation, man page generation, and LaTeX and HTML documentation files.
+- Has problems with very Fortran specific constructs (e.g. [interface](https://stackoverflow.com/questions/68968973/writing-doxygen-documentation-for-a-fortran-module-interface))
 
 ## [FORD (Fortran Documenter)](https://github.com/cmacmackin/ford)
 
@@ -63,6 +85,6 @@ Program example
 | Features | ProTex | Doxygen | FORD |
 | --- | --- | --- | --- |
 | Supported languages | Fortran, C | Fortran, C/C++, Python, etc. | Fortran |
-| Documentation Type | LaTex | LaTex, HTML | HTML |
+| Documentation Type | LaTex, HTML | LaTex, HTML | HTML |
 | Fortran 2003 feautures? | no | no | yes |
 | Call graph? | no | yes | yes |
