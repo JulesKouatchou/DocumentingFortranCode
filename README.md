@@ -27,9 +27,15 @@ We here provide a brief description of the three tools and compare their main fe
 
 ## [Doxygen](https://www.doxygen.nl/index.html)
 
-- An automatic documentation tool
+- An automatic documentation tool.
+- Flexible comment placement: Allows you to put documentation in the header file (before the declaration of an entity), source file (before the definition of an entity) or in a separate file.
 - Supports pretty printing, call graph generation, man page generation, and LaTeX and HTML documentation files.
+- The generated HTML documentation can be viewed by pointing a HTML browser to the index.html file in the html directory. For the best results a browser that supports cascading style sheets (CSS) should be used.
+- You can type normal HTML tags in your documentation. Doxygen will convert them to their equivalent $\mbox{\LaTeX}$, RTF, and man-page counterparts automatically.
+- Allows inclusion of source code examples that are automatically cross-referenced with the documentation.
+- Generated man pages that can be viewed using the man program. Note that there are some limitations to the capabilities of the man page format, so some information (like class diagrams, cross references and formulas) will be lost.
 - Has problems with very Fortran specific constructs (e.g. [interface](https://stackoverflow.com/questions/68968973/writing-doxygen-documentation-for-a-fortran-module-interface))
+
 
 ## [FORD (Fortran Documenter)](https://github.com/cmacmackin/ford)
 
@@ -68,24 +74,39 @@ By conforming to the following style useful developer documentation may be creat
 - LaTeX style maths may be used to include equations in the documentation.
 
 ```fortran
-!># Example
-!>
-!> Author - GMAO SI Team
-!>
-!> An example program
-Program example
-  Use kinds, Only : wi
-  Implicit None
+!------------------------------------------------------------------------------
+!># Standalone Program for Testing PFIO
+!
+!> Writes out 2D & 3D geolocated variables in a netCDF file.
+!------------------------------------------------------------------------------
+#include "MAPL_ErrLog.h"
+#include "unused_dummy.H"
 
-  !> Integer counter
-  Integer( Kind = wi ) :: i
+program main
+      !> Modules used
+      use, intrinsic :: iso_fortran_env, only: REAL32
+      use mpi
+      use MAPL
+      use ESMF
+      use pFIO_UnlimitedEntityMod
+      use pFIO_ClientManagerMod, only: o_Clients
+      ...
 
-  ...
-
-  !> Calculate the factorial of n
-  Function fact(n)
-
-  ...
+!> For a given number of grid points and a number of available processors,
+!> this subroutines determines the number of grid points assigned to each
+!> processor.
+      subroutine decompose_dim(dim_world, dim_array, num_procs )
+!
+      !> total number of grid points
+      integer, intent(in)  :: dim_world
+      !> number of processors
+      integer, intent(in)  :: num_procs
+      integer, intent(out) :: dim_array(0:num_procs-1)
+      ...
+      
+      end subroutine decompose_dim
+ ...
+ end program main
 
 ```
 
@@ -94,6 +115,11 @@ Program example
 | Features | ProTex | Doxygen | FORD |
 | --- | --- | --- | --- |
 | Supported languages | Fortran, C | Fortran, C/C++, Python, etc. | Fortran, C (limited) |
-| Documentation Type | LaTex, HTML | LaTex, HTML | HTML |
+| Documentation Type | LaTex, HTML | LaTex, HTML, RTF| HTML |
 | Fortran 2003 feautures? | no | no | yes |
 | Call graph? | no | yes | yes |
+| Platforms  | | Mac OS X, Linux, Windows | Mac OS X, Linux, Windows |
+| CMake Integration? |  | yes | |
+| Markdown support? | no | yes | yes |
+! CSS Support? | no | yes | yes |
+| Fortran File Extension | .f .f90 .F90 | .f .for .f90 .f95 .F90 | .f90 .F90 .pf |
