@@ -31,7 +31,7 @@ We here provide a brief description of the three tools and compare their main fe
 - Flexible comment placement: Allows you to put documentation in the header file (before the declaration of an entity), source file (before the definition of an entity) or in a separate file.
 - Supports pretty printing, call graph generation, man page generation, and LaTeX and HTML documentation files.
 - The generated HTML documentation can be viewed by pointing a HTML browser to the index.html file in the html directory. For the best results a browser that supports cascading style sheets (CSS) should be used.
-- You can type normal HTML tags in your documentation. Doxygen will convert them to their equivalent $\mbox{\LaTeX}$, RTF, and man-page counterparts automatically.
+- You can type normal HTML tags in your documentation. Doxygen will convert them to their equivalent LaTeX, RTF, and man-page counterparts automatically.
 - Allows inclusion of source code examples that are automatically cross-referenced with the documentation.
 - Generated man pages that can be viewed using the man program. Note that there are some limitations to the capabilities of the man page format, so some information (like class diagrams, cross references and formulas) will be lost.
 - Has problems with very Fortran specific constructs (e.g. [interface](https://stackoverflow.com/questions/68968973/writing-doxygen-documentation-for-a-fortran-module-interface))
