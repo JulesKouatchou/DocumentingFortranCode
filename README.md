@@ -185,8 +185,8 @@ program main
 | CMake Integration? | ? | yes | yes |
 | Markdown support? | no | yes | yes |
 ! CSS Support? | no | yes | yes |
-| Link to dowload source code | no | | yes |
-| Links between related parts of the code | no | yes |
+| Link to dowload source code | no | yes | yes |
+| Links between related parts of the code | no | yes | yes |
 
 ## Recommendations
 
