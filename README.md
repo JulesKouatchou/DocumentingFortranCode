@@ -52,7 +52,7 @@ We here provide a brief description of the three tools and compare their main fe
 
 ## [FORD (Fortran Documenter)](https://github.com/cmacmackin/ford)
 
-> The goal of FORD is to be able to reliably produce documentation for modern Fortran software which is informative and nice to look at. 
+> The goal of FORD is to be able to reliably produce documentation for modern Fortran software which is informative and nice to look at. The documentation should be easy to write and non-obtrusive within the code. While it will never be as feature-rich as Doxygen, hopefully FORD will be able to provide a good alternative for documenting Fortran projects.
 
 - An automatic documentation generator for modern (1990 onward) Fortran code.
 - Was created to fixed the limitation of Doxygen to handle new features of Fortran.
@@ -115,6 +115,13 @@ By conforming to the following style useful developer documentation may be creat
 !># Standalone Program for Testing PFIO
 !
 !> Writes out 2D & 3D geolocated variables in a netCDF file.
+!!
+!! Usage:
+!!
+!!   If we reserve 2 haswell nodes (28 cores in each), want to run the model on 28 cores 
+!!   and use 1 MultiGroup with 5 backend processes, then the execution command is:
+!!
+!!      mpiexec -np 56 pfio_MAPL_demo.x --npes_model 28 --oserver_type multigroup --nodes_output_server 1 --npes_backend_pernode 5
 !------------------------------------------------------------------------------
 #include "MAPL_ErrLog.h"
 #include "unused_dummy.H"
@@ -138,8 +145,8 @@ program main
       ...
 
 !> For a given number of grid points and a number of available processors,
-!> this subroutines determines the number of grid points assigned to each
-!> processor.
+!! this subroutines determines the number of grid points assigned to each
+!! processor.
       subroutine decompose_dim(dim_world, dim_array, num_procs )
 !
       !> total number of grid points
@@ -153,12 +160,10 @@ program main
       
 !> Solves \( c = \sqrt{a^2 + b^2} \)
      subroutine square( a, b, c )
-     !> length
-     real, intent(in) :: a
-     !> height
-     real, intent(in) :: b
-     !> solution
-     real, intent(out) :: c
+     real, intent(in) :: a   !! length
+     real, intent(in) :: b   !! height
+     real, intent(out) :: c  !! solution
+     ...
      end subroutine square
  ...
  end program main
@@ -167,16 +172,33 @@ program main
 
 ## Comparison
 
-### Summary Table
 
 | Features | ProTex | Doxygen | FORD |
 | --- | --- | --- | --- |
 | Supported languages | Fortran, C | Fortran, C/C++, Python, etc. | Fortran, C (limited) |
+| Fortran File Extension | .f .f90 .F90 | .f .for .f90 .f95 .F90 | .F .f90 .F90 .pf |
 | Documentation Type | LaTex, HTML | LaTex, HTML, RTF| HTML |
+| Platforms  | | Mac OS X, Linux, Windows | Mac OS X, Linux, Windows |
 | Modern Fortran feautures? | no | no (making improvement) | yes |
 | Call graph? | no | yes | yes |
-| Platforms  | | Mac OS X, Linux, Windows | Mac OS X, Linux, Windows |
-| CMake Integration? |  | yes | |
+| Create directory structure? | no | yes | yes |
+| CMake Integration? | ? | yes | yes |
 | Markdown support? | no | yes | yes |
 ! CSS Support? | no | yes | yes |
-| Fortran File Extension | .f .f90 .F90 | .f .for .f90 .f95 .F90 | .f90 .F90 .pf |
+| Link to dowload source code | no | | yes |
+| Links between related parts of the code | no | yes |
+
+## Recommendations
+
+This is my personal opinion. I would prefer FORD for the following reasons:
+
+
+- FORD generates readable pages out of the box.
+- Comments are written in Markdown.
+    - We can use the existing README.md files that are already available for the MAPL component descriptions.
+- With FORD, you can start using it on a program without modifying any source file, and then add inline documentation over time.
+- With FORD, we can define simple and non-intrusive documentation standards for APIs.
+- The use Doxygen will require more work for inline documentation.
+- MAPL relies more on modern Fortran features.
+    - FORD is aware of new Fortran features such as type-bound procedures, interfaces, etc, and is much nicer than Doxygen in that regard.
+    - FORD is actively developed and focuses on modern Fortran. If we encounter a bug or limitation, we can contact the developers and receive the help we need.
