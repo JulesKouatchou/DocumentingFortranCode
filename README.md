@@ -20,7 +20,7 @@ The tool creating the documentation needs to:
 We are considering ProTex, Doxygen and FORD. 
 We here provide a brief description of the three tools and compare their main features.
 
-## [ProTEX](http://wiki.seas.harvard.edu/geos-chem/index.php/Automatic_documentation_with_protex)
+## [ProTex](http://wiki.seas.harvard.edu/geos-chem/index.php/Automatic_documentation_with_protex)
 
 - Perl script that can strip information from a standard Fortran document header and save that to a LaTeX file.
 
@@ -145,6 +145,7 @@ program main
 - ProTex
     - 
 - Doxygen
+    - Seems to lag a "bit" in respect to the more modern Fortran features.
     - [how to get Doxygen to work with Fortran interface statements?](https://stackoverflow.com/questions/59970141/how-to-get-doxygen-to-work-with-fortran-interface-statements)
     - [Writing Doxygen documentation for a Fortran module interface](https://stackoverflow.com/questions/68968973/writing-doxygen-documentation-for-a-fortran-module-interface)
 - FORD
@@ -160,7 +161,7 @@ program main
 | --- | --- | --- | --- |
 | Supported languages | Fortran, C | Fortran, C/C++, Python, etc. | Fortran, C (limited) |
 | Documentation Type | LaTex, HTML | LaTex, HTML, RTF| HTML |
-| Fortran 2003 feautures? | no | no | yes |
+| Modern Fortran feautures? | no | no (making improvement) | yes |
 | Call graph? | no | yes | yes |
 | Platforms  | | Mac OS X, Linux, Windows | Mac OS X, Linux, Windows |
 | CMake Integration? |  | yes | |
