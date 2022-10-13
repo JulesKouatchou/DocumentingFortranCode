@@ -145,8 +145,8 @@ program main
       ...
 
 !> For a given number of grid points and a number of available processors,
-!! this subroutines determines the number of grid points assigned to each
-!! processor.
+!> this subroutines determines the number of grid points assigned to each
+!> processor.
       subroutine decompose_dim(dim_world, dim_array, num_procs )
 !
       !> total number of grid points
@@ -160,9 +160,12 @@ program main
       
 !> Solves \( c = \sqrt{a^2 + b^2} \)
      subroutine square( a, b, c )
-     real, intent(in) :: a   !! length
-     real, intent(in) :: b   !! height
-     real, intent(out) :: c  !! solution
+     !> length
+     real, intent(in) :: a 
+     !> height
+     real, intent(in) :: b 
+     !> solution
+     real, intent(out) :: c 
      ...
      end subroutine square
  ...
