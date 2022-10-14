@@ -179,7 +179,7 @@ program main
 | Features | ProTex | Doxygen | FORD |
 | --- | --- | --- | --- |
 | Supported languages | Fortran, C | Fortran, C/C++, Python, etc. | Fortran, C (limited) |
-| Fortran File Extension | .f .f90 .F90 | .f .for .f90 .f95 .F90 | .F .f90 .F90 .pf |
+| Fortran File Extension | .f .f90 .F90 | .f .for .f90 .f95 .F90 | .F .pf f90, f95, f03, f08, f15, F90, F95, F03, F08, F15 |
 | Documentation Type | LaTex, HTML | LaTex, HTML, RTF| HTML |
 | Platforms  | | Mac OS X, Linux, Windows | Mac OS X, Linux, Windows |
 | Modern Fortran feautures? | no | no (making improvement) | yes |
