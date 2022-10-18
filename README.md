@@ -68,7 +68,7 @@ We here provide a brief description of the three tools and compare their main fe
    - to download the source code.
    - to individual files, both in their raw form or in HTML with syntax highlighting.
    - between related parts of the software.
-- Use configurable settings to generate documentation.
+- Use configurable settings to generate documentation. The settings allow users to define which types of comments can be used for documentation.
 - Can add GitHub (Bitbucket), Twitter and LinkedIn pages.
 - Searchable documentation using Tipue Search which supports a wide range of Web browsers. Can search source code as well as procedures, variables, comments, etc.
 
@@ -114,20 +114,23 @@ By conforming to the following style useful developer documentation may be creat
 !------------------------------------------------------------------------------
 !># Standalone Program for Testing PFIO
 !
-!> Writes out 2D & 3D geolocated variables in a netCDF file.
-!!
-!! Usage:
-!!
-!!   If we reserve 2 haswell nodes (28 cores in each), want to run the model on 28 cores 
-!!   and use 1 MultiGroup with 5 backend processes, then the execution command is:
-!!
-!!      mpiexec -np 56 pfio_MAPL_demo.x --npes_model 28 --oserver_type multigroup --nodes_output_server 1 --npes_backend_pernode 5
+! Program to write out several records of 2D & 3D geolocated variables in a netCDF file.
+! It mimics the prgramming steps of MAPL_Cap and can be used as reference to implement
+! PFIO in a non-GEOS model.
+!
+! @note
+! `Usage`:
+!
+!   If we reserve 2 haswell nodes (28 cores in each), want to run the model on 28 cores
+!   and use 1 MultiGroup with 5 backend processes, then the execution command is:
+!
+!       mpiexec -np 56 pfio_MAPL_demo.x --npes_model 28 --oserver_type multigroup --nodes_output_server 1 --npes_backend_pernode 5
+! @endnote
 !------------------------------------------------------------------------------
 #include "MAPL_ErrLog.h"
 #include "unused_dummy.H"
 
 program main
-      !> Modules used
       use, intrinsic :: iso_fortran_env, only: REAL32
       use mpi
       use MAPL
@@ -145,28 +148,24 @@ program main
       ...
 
 !> For a given number of grid points and a number of available processors,
-!> this subroutines determines the number of grid points assigned to each
-!> processor.
+! this subroutines determines the number of grid points assigned to each
+! processor.
       subroutine decompose_dim(dim_world, dim_array, num_procs )
 !
-      !> total number of grid points
-      integer, intent(in)  :: dim_world
-      !> number of processors
-      integer, intent(in)  :: num_procs
+      integer, intent(in)  :: dim_world         !! total number of grid points
+      integer, intent(in)  :: num_procs         !! number of processors
       integer, intent(out) :: dim_array(0:num_procs-1)
       ...
       
       end subroutine decompose_dim
-      
-!> Solves \( c = \sqrt{a^2 + b^2} \)
+    
+!> 
+! Solves \( c = \sqrt{a^2 + b^2} \)
      subroutine square( a, b, c )
-     !> length
-     real, intent(in) :: a 
-     !> height
-     real, intent(in) :: b 
-     !> solution
-     real, intent(out) :: c 
-     ...
+     real, intent(in)  :: a  !! length
+     real, intent(in)  :: b  !! height
+     real, intent(out) :: c  !! solution
+     c = sqrt(a**2 + b**2)
      end subroutine square
  ...
  end program main
