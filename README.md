@@ -186,9 +186,10 @@ program main
 | Create directory structure? | no | yes | yes |
 | CMake Integration? | ? | yes | yes |
 | Markdown support? | no | yes | yes |
-! CSS Support? | no | yes | yes |
-| Link to dowload source code | no | yes | yes |
+| CSS Support? | no | yes | yes |
+| Link to download source code | no | yes | yes |
 | Links between related parts of the code | no | yes | yes |
+| Configurable settings | no | yes | yes |
 
 ## Recommendations
 
@@ -198,6 +199,10 @@ This is my personal opinion. I would prefer FORD for the following reasons:
 - FORD generates readable pages out of the box.
 - Comments are written in Markdown.
     - We can use the existing README.md files that are already available for the MAPL component descriptions.
+- The configurable settings allow users to define which comments will be used in the documentation.
+- FORD has the capbility to:
+    - Display a Python backtrace if an error is encountered when parsing a file.
+    - Use multithreading to generate the documentation.
 - With FORD, you can start using it on a program without modifying any source file, and then add inline documentation over time.
 - With FORD, we can define simple and non-intrusive documentation standards for APIs.
 - The use Doxygen will require more work for inline documentation.
