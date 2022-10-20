@@ -28,6 +28,8 @@ We here provide a brief description of the three tools and compare their main fe
 - The main program, each function, subroutine, or module will include a prologue instrumented for use with the ProTEX auto-documentation script. The purpose is to describe what the code does.
 - Within the prologues, user can include any LaTex syntax, especially for mathetical equations.
 
+Here is a sample Fortran with ProTex prologues:
+
 ```fortran
 !------------------------------------------------------------------------------
 !BOP
