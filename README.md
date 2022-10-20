@@ -131,22 +131,34 @@ By conforming to the following style useful developer documentation may be creat
 #include "unused_dummy.H"
 
 program main
-      use, intrinsic :: iso_fortran_env, only: REAL32
-      use mpi
-      use MAPL
-      use ESMF
-      use pFIO_UnlimitedEntityMod
-      use pFIO_ClientManagerMod, only: o_Clients
-      
-      !> initialized to the value of \( \pi \)
-      real(REAL64) :: global_pi 
+      implicit none
 
-      !> particle data type to contain position
-      type particle
-          real(REAL64) :: x, y, z
-      end type particle
-      ...
+      ! PARAMETERS:
+      real,              PARAMETER ::          pfio_vmin = -MAPL_UNDEF
+      real,              PARAMETER ::          pfio_vmax =  MAPL_UNDEF
+      real,              PARAMETER :: pfio_missing_value =  MAPL_UNDEF
+      real,              PARAMETER ::    pfio_fill_value =  MAPL_UNDEF
+      real,           DIMENSION(2) ::   pfio_valid_range = (/-MAPL_UNDEF, MAPL_UNDEF/)
+      integer,           parameter ::  MAX_STRING_LENGTH = 256
+      real(kind=REAL64), parameter ::                 PI = 4.0d0*ATAN(1.0d0)
+      integer,           parameter ::   num_time_records = 6
+      integer,           parameter ::           num_dims = 2  !! number of dimension to decompose
 
+      ! PFIO specific variables
+      type(MAPL_FlapCLI)      :: cli
+      type(MAPL_CapOptions)   :: cap_options
+      type(ServerManager)     :: ioserver_manager
+      type(SplitCommunicator) :: split_comm
+      type(ArrayReference)    :: ref
+      type(FileMetadata)      :: fmd
+      Type(Variable)          :: v
+      type(StringVariableMap) :: var_map
+      ...     
+!------------------------------------------------------------------------------
+CONTAINS
+!------------------------------------------------------------------------------
+     ...
+!------------------------------------------------------------------------------
 !> For a given number of grid points and a number of available processors,
 ! this subroutines determines the number of grid points assigned to each
 ! processor.
@@ -157,18 +169,26 @@ program main
       integer, intent(out) :: dim_array(0:num_procs-1)
       ...
       
-      end subroutine decompose_dim
-    
-!> 
-! Solves \( c = \sqrt{a^2 + b^2} \)
-     subroutine square( a, b, c )
-     real, intent(in)  :: a  !! length
-     real, intent(in)  :: b  !! height
-     real, intent(out) :: c  !! solution
-     c = sqrt(a**2 + b**2)
-     end subroutine square
- ...
- end program main
+      end subroutine decompose_dim    
+!------------------------------------------------------------------------------
+!> Arbitrary set values for the temperature field as:
+! $$ T_{i,j} = 2.0 \cos(2\pi \frac{lon_i}{\max(lon)})\times ( \cos(\pi \frac{lat_j}{\max(lat)}))^2$$
+   subroutine set_temperature(var)
+
+      real , intent(out) ::    var(i1:i2, j1:j2)   !! Variable containing the temperature field.
+      integer :: i, j
+
+      do j = j1, j2
+         do i = i1,i2
+            var(i,j) =  2.0 + cos(2.0*lons(i)/lon_max*PI) &
+                        *cos(lats(j)/lat_max*PI)*cos(lats(j)/lat_max*PI)
+         enddo
+      enddo
+
+   end subroutine set_temperature
+!------------------------------------------------------------------------------
+   ...
+end program pfio_standalone_test
 
 ```
 
