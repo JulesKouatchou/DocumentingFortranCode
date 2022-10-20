@@ -22,8 +22,115 @@ We here provide a brief description of the three tools and compare their main fe
 
 ## [ProTex](http://wiki.seas.harvard.edu/geos-chem/index.php/Automatic_documentation_with_protex)
 
-- Perl script that can strip information from a standard Fortran document header and save that to a LaTeX file.
+- ProTeX was developed by the NASA GMAO.
+- Perl script which extracts the prologues (contain Fortran Comments) from Fortran source files and converts them into a LaTeX file.
+- Users need to include specific tags (`!BOP`/`!EOP`, `!BOC`/`!EOC`, `! !USES`, `! !TO DO:`, `! !SEE ALSO`, etc.) that are used by the script to extract documentation from the code.
+- The main program, each function, subroutine, or module will include a prologue instrumented for use with the ProTEX auto-documentation script. The purpose is to describe what the code does.
+- Within the prologues, user can include any LaTex syntax, especially for mathetical equations.
 
+```fortran
+!------------------------------------------------------------------------------
+!BOP
+!
+#include "MAPL_ErrLog.h"
+#include "unused_dummy.H"
+program pfio_standalone_test
+!
+! !USES:
+      use, intrinsic :: iso_fortran_env, only: REAL32
+      use mpi
+      use MAPL
+      use pFIO_UnlimitedEntityMod
+      use pFIO_ClientManagerMod, only: o_Clients
+      ...
+!
+! !DESCRIPTION:
+! Program to write out several records of 2D & 3D geolocated variables in a netCDF file.
+! It mimics the prgramming steps of MAPL_Cap and can be used as reference to implement
+! PFIO in a non-GEOS model.
+!\\
+!\\
+! \textbf{Usage:}
+!\\
+!   If we reserve 2 haswell nodes (28 cores in each), want to run the model on 28 cores
+!   and use 1 MultiGroup with 5 backend processes, then the execution command is:
+!\\
+!  \texttt{   mpiexec -np 56 pfio_MAPL_demo.x --npes_model 28 --oserver_type multigroup --nodes_output_server 1 --npes_backend_pernode 5}
+!EOP
+!------------------------------------------------------------------------------
+!BOC
+...
+!EOC
+!------------------------------------------------------------------------------
+CONTAINS
+!------------------------------------------------------------------------------
+...
+!------------------------------------------------------------------------------
+!BOP
+!
+! !IROUTINE: decompose_dim
+!
+! !DESCRIPTION:
+! For a given number of grid points along a dimension and a number of
+! available processors for that diemsion, determine the number of
+! grid points assigned to each processor.
+!\\
+!\\
+! !INTERFACE:
+!
+      subroutine decompose_dim(dim_world, dim_array, num_procs )
+!
+! !INPUT PARAMETERS:
+      integer, intent(in)  :: dim_world ! total number of grid points
+      integer, intent(in)  :: num_procs ! number of processors
+!
+! !OUTPUT PARAMETERS:
+      integer, intent(out) :: dim_array(0:num_procs-1)
+!
+! !LOCAL VARIABLES:
+      integer ::   n, im, rm
+!EOP
+!------------------------------------------------------------------------------
+!BOC
+      ....
+      end subroutine decompose_dim
+!EOC
+!------------------------------------------------------------------------------
+BOP
+!
+! !IROUTINE: set_temperature
+!
+! !DESCRIPTION:
+! Arbitrary set values for the temperature field as:
+! $$ T_{i,j} = 2.0 \cos(2\pi \frac{lon_i}{\max(lon)})\times ( \cos(\pi \frac{lat_j}{\max(lat)}))^2$$
+!\\
+!\\
+! !INTERFACE:
+!
+      subroutine set_temperature(var)
+!
+! !OUPUT PARAMETERS:
+         real , intent(out) ::    var(i1:i2, j1:j2)
+!
+! !LOCAL VARIABLES:
+         integer :: i, j
+!EOP
+!------------------------------------------------------------------------------
+!BOC
+
+         do j = j1, j2
+            do i = i1,i2
+               var(i,j) = 2.0 + cos(2.0*lons(i)/lon_max*PI) &
+                                     *cos(lats(j)/lat_max*PI)   &
+                                     *cos(lats(j)/lat_max*PI)
+            enddo
+         enddo
+
+      end subroutine set_temperature
+!EOC
+!------------------------------------------------------------------------------
+end program pfio_standalone_test
+```
 
 ## [Doxygen](https://www.doxygen.nl/index.html)
 
@@ -130,7 +237,7 @@ By conforming to the following style useful developer documentation may be creat
 #include "MAPL_ErrLog.h"
 #include "unused_dummy.H"
 
-program main
+program pfio_standalone_test
       implicit none
 
       ! PARAMETERS:
@@ -187,7 +294,6 @@ CONTAINS
 
    end subroutine set_temperature
 !------------------------------------------------------------------------------
-   ...
 end program pfio_standalone_test
 
 ```
