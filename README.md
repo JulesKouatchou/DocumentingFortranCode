@@ -311,6 +311,7 @@ end program pfio_standalone_test
 | Platforms  | | Mac OS X, Linux, Windows | Mac OS X, Linux, Windows |
 | Modern Fortran feautures? | no | no (making improvement) | yes |
 | Call graph? | no | yes | yes |
+| UML Class Diagram? | no | yes | yes |
 | Create directory structure? | no | yes | yes |
 | CMake Integration? | ? | yes | yes |
 | Markdown support? | no | yes | yes |
