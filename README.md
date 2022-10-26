@@ -144,7 +144,9 @@ end program pfio_standalone_test
 - You can type normal HTML tags in your documentation. Doxygen will convert them to their equivalent LaTeX, RTF, and man-page counterparts automatically.
 - Allows inclusion of source code examples that are automatically cross-referenced with the documentation.
 - Generated man pages that can be viewed using the man program. Note that there are some limitations to the capabilities of the man page format, so some information (like class diagrams, cross references and formulas) will be lost.
-- Has problems with very Fortran specific constructs (e.g. [interface](https://stackoverflow.com/questions/68968973/writing-doxygen-documentation-for-a-fortran-module-interface))
+- Has problems with very Fortran specific constructs:
+     - [interface](https://stackoverflow.com/questions/68968973/writing-doxygen-documentation-for-a-fortran-module-interface))
+     - [`public/private` statements inside of types are not supported](https://github.com/doxygen/doxygen/issues/5273)
 
 
 #### Examples of Doxygen Tags for Fortran Codes
@@ -193,7 +195,6 @@ As of version 4.5.0, FORD now offers limited support for non-Fortran source file
 #### Examples of FORD Tags
 - [GS 2 Writing Documentation](https://gyrokinetics.gitlab.io/gs2/page/developer_manual/writing_documentation.html)
 - [Using Ford to document Fortran programs](https://blog.hpc.qmul.ac.uk/using-ford-to-document-fortran-programs.html)
-- 
 
 #### Limitations
 - Ignores FORTRAN 77 data and equivalence statements.
