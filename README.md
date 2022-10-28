@@ -18,6 +18,8 @@ The tool creating the documentation needs to:
 - Provide enough information on modules so that they can be reused without knowing the internal code details.
 - Generate searchable and browsable documentation.
 
+With such documentation, code developers and users should be able to have a description of the main components of the code and 
+how those components interact together.
 
 We are considering `ProTex`, `Doxygen` and `FORD`. 
 We here provide a brief description of the three tools and compare their main features.
