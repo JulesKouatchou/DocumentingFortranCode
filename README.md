@@ -13,7 +13,7 @@ The tool creating the documentation needs to:
 
 - Provide features for specially placed and formatted comments around modules/subroutines.
 - Extract source code comments to gererate documentation
-- Create call graphs.
+- Create directory structure and call graphs.
 - Generate documentation that can be inspected without looking into the code (e.g. HTML-pages, PDF-document, etc.)
 - Provide enough information on modules so that they can be reused without knowing the internal code details.
 - Generate searchable and browsable documentation.
