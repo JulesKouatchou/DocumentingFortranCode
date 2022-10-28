@@ -7,15 +7,17 @@ Through the dcumentation, we want to have a good understanding of all the public
 We expect the documentation to:
 
 - Provide a description of the purpose and input/output arguments of the API.
-- Provide a description of the module containg the API.
+- Provide a description of the module containing the API.
 
 The tool creating the documentation needs to:
 
 - Provide features for specially placed and formatted comments around modules/subroutines.
 - Extract source code comments to gererate documentation
+- Create call graphs.
 - Generate documentation that can be inspected without looking into the code (e.g. HTML-pages, PDF-document, etc.)
 - Provide enough information on modules so that they can be reused without knowing the internal code details.
-- Generate documentation in a variety of formats (specially searchable and browsable).
+- Generate searchable and browsable documentation.
+
 
 We are considering `ProTex`, `Doxygen` and `FORD`. 
 We here provide a brief description of the three tools and compare their main features.
