@@ -26,10 +26,14 @@ We here provide a brief description of the three tools and compare their main fe
 
 ## [ProTex](http://wiki.seas.harvard.edu/geos-chem/index.php/Automatic_documentation_with_protex)
 
-- ProTeX was developed by the NASA GMAO.
-- Perl script which extracts the prologues (contain Fortran Comments) from Fortran source files and converts them into a LaTeX file.
+- ProTeX was developed by the NASA GMAO with the following goals in mind:
+    - Documented code shold be written in a text form: easily reproducible and readable by developers.
+    - The documented code should be directly compilable: the documentation should be entirely contained as code comments.
+    - Automatically produce documentation in LaTeX and HTML formats.
+    - Ensure good software engineering practices: avoid the possibility that changes in the code results in inconsistencies in the documentation. 
+- Consists of a Perl script which extracts the prologues (contain Fortran Comments) from Fortran source files and converts them into a LaTeX file.
 - Users need to include specific tags (`!BOP`/`!EOP`, `!BOC`/`!EOC`, `! !USES`, `! !TO DO:`, `! !SEE ALSO:`, etc.) that are used by the script to extract documentation from the code.
-- The main program, each function, subroutine, or module will include a prologue instrumented for use with the ProTEX auto-documentation script. The purpose is to describe what the code does.
+- The main program, each function, subroutine, or module will include a prologue instrumented for use with the ProTeX auto-documentation script. The purpose is to describe what the code does.
 - Within the prologues, user can include any LaTex syntax, especially for mathetical equations.
 
 Here is a sample Fortran with ProTex prologues:
