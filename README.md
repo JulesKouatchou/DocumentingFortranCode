@@ -32,7 +32,8 @@ We here provide a brief description of the three tools and compare their main fe
     - Automatically produce documentation in LaTeX and HTML formats.
     - Ensure good software engineering practices: avoid the possibility that changes in the code results in inconsistencies in the documentation. 
 - Consists of a Perl script which extracts the prologues (contain Fortran Comments) from Fortran source files and converts them into a LaTeX file.
-- Users need to include specific tags (`!BOP`/`!EOP`, `!BOC`/`!EOC`, `! !USES`, `! !TO DO:`, `! !SEE ALSO:`, etc.) that are used by the script to extract documentation from the code.
+- Users inserts markers (which indicate the start and end of certain regions of code) and keywords (to determine the mode or section the code is describing) into the code: `!BOP`/`!EOP`, `!BOC`/`!EOC`, `! !USES`, `! !TO DO:`, `! !SEE ALSO:`, etc. 
+- The markers and keywords are used by the Perl script to extract documentation from the code.
 - The main program, each function, subroutine, or module will include a prologue instrumented for use with the ProTeX auto-documentation script. The purpose is to describe what the code does.
 - Within the prologues, user can include any LaTex syntax, especially for mathetical equations.
 
