@@ -2,7 +2,7 @@
 
 ## Introduction
 
-We are looking for the appropriate tool to automatically documenation from the source code.
+We are looking for the appropriate tool to automatically create documenation from the source code.
 Through the dcumentation, we want to have a good understanding of all the public routines (API) and how they interact.
 We expect the documentation to:
 
