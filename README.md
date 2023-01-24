@@ -22,7 +22,7 @@ With such documentation, code developers and users should be able to have a desc
 how those components interact together.
 
 We are considering `ProTex`, `Doxygen` and `FORD`. 
-We here provide a brief description of the three tools and compare their main features.
+We provide here a brief description of the three tools and compare their main features.
 
 ## [ProTex](http://wiki.seas.harvard.edu/geos-chem/index.php/Automatic_documentation_with_protex)
 
