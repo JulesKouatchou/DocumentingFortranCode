@@ -35,9 +35,9 @@ We provide here a brief description of the three tools and compare their main fe
 - Users inserts markers (which indicate the start and end of certain regions of code) and keywords (to determine the mode or section the code is describing) into the code: `!BOP`/`!EOP`, `!BOC`/`!EOC`, `! !USES`, `! !TO DO:`, `! !SEE ALSO:`, etc. 
 - The markers and keywords are used by the Perl script to extract documentation from the code.
 - The main program, each function, subroutine, or module will include a prologue instrumented for use with the ProTeX auto-documentation script. The purpose is to describe what the code does.
-- Within the prologues, user can include any LaTex syntax, especially for mathetical equations.
+- Within the prologues, user can include any LaTeX syntax, especially for mathematical equations.
 
-Here is a sample Fortran with ProTex prologues:
+Here is a sample Fortran code with ProTex prologues:
 
 ```fortran
 !------------------------------------------------------------------------------
