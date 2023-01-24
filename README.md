@@ -154,7 +154,7 @@ end program pfio_standalone_test
 - Allows inclusion of source code examples that are automatically cross-referenced with the documentation.
 - Generated man pages that can be viewed using the man program. Note that there are some limitations to the capabilities of the man page format, so some information (like class diagrams, cross references and formulas) will be lost.
 - Has problems with very Fortran specific constructs:
-     - [interface](https://stackoverflow.com/questions/68968973/writing-doxygen-documentation-for-a-fortran-module-interface))
+     - [interface](https://stackoverflow.com/questions/68968973/writing-doxygen-documentation-for-a-fortran-module-interface)
      - [`public/private` statements inside of types are not supported](https://github.com/doxygen/doxygen/issues/5273)
 
 
