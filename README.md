@@ -196,7 +196,7 @@ FORD usage is based on projects. A project is just whatever piece of software yo
 
 Much like in Doxygen, you can use a `@note` environment to place the succeeding documentation into a special boxed paragraph. 
 This syntax may be used at any location in the documentation comment and it will include as the note's contents anything until 
-the first use of `@endnote` (provided there are no new @note or other environments, described below, started before then). 
+the first use of `@endnote` (provided there are no new `@note` or other environments, described below, started before then). 
 If no such `@endnote` tag can be found then the note's contents will include until the end of the paragraph where the environment was activated. Other environments which behave the same way are `@warning`, `@todo`, and `@bug`.
 
 As of version 4.5.0, FORD now offers limited support for non-Fortran source files. While it will not analyze the code within such files, it can extract documentation for the file as a whole and display it on its own page, as done for Fortran source files. An attempt will also be made to apply syntax highlighting to the contents of the file (although this may fail if non-standard file extensions are used). This may be useful for documenting build scripts or C wrappers.
