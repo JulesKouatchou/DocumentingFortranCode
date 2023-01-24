@@ -220,7 +220,7 @@ The page [Some Projects Using FORD](https://github.com/Fortran-FOSS-Programmers/
 
 ## Where Doxygen and FORD Overlap
 
-By conforming to the following style useful developer documentation may be created automatically using either FORD or Doxygen.
+By conforming to the following style, useful developer documentation may be created automatically using either FORD or Doxygen.
 
 - Comments attached to program units, variables and derived types may be automatically documented.
 - Documentation must precede the declaration of the unit, variable or derived type.
