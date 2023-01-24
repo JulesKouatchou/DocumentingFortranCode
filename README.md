@@ -27,7 +27,7 @@ We provide here a brief description of the three tools and compare their main fe
 ## [ProTex](http://wiki.seas.harvard.edu/geos-chem/index.php/Automatic_documentation_with_protex)
 
 - ProTeX was developed by the NASA GMAO with the following goals in mind:
-    - Documented code shold be written in a text form: easily reproducible and readable by developers.
+    - The documented code should be written in a text form: easily reproducible and readable by developers.
     - The documented code should be directly compilable: the documentation should be entirely contained as code comments.
     - Automatically produce documentation in LaTeX and HTML formats.
     - Ensure good software engineering practices: avoid the possibility that changes in the code results in inconsistencies in the documentation. 
