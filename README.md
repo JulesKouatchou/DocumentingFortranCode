@@ -1,5 +1,7 @@
 # Comparing ProTex, Doxygen and FORD
 
+**This document was written to explore documentation tools and identify which one(s) can be considered in the projects we are involved in. Its content can change as we learn more about the tools.**
+
 ## Introduction
 
 We are looking for the appropriate tool to automatically create documenation from the source code.
@@ -318,20 +320,19 @@ end program pfio_standalone_test
 | --- | --- | --- | --- |
 | Supported languages | Fortran, C | Fortran, C/C++, Python, etc. | Fortran, C, Python, Shell, TeX |
 | Fortran File Extension | .f .f90 .F90 | .f .for .f90 .f95 .F90 | .F .pf f90, f95, f03, f08, f15, F90, F95, F03, F08, F15 |
-| Documentation Type | LaTex, HTML | LaTex, HTML, RTF| HTML |
-| Platforms  | | Mac OS X, Linux, Windows | Mac OS X, Linux, Windows |
+| Documentation Type | LaTeX, HTML, pdf | LaTeX, HTML, RTF| HTML |
+| Platforms  | any with Perl | Mac OS X, Linux, Windows | Mac OS X, Linux, Windows |
 | Modern Fortran feautures? | no | no (making improvement) | yes |
 | Call graph? | no | yes | yes |
 | UML Class Diagram? | no | yes | yes |
 | Create directory structure? | no | yes | yes |
 | CMake Integration? | ? | yes | yes |
 | Markdown support? | no | yes | yes |
-| CSS Support? | no | yes | yes |
+| CSS Support? | possible | yes | yes |
 | Link to download source code | no | yes | yes |
 | Links between related parts of the code | no | yes | yes |
 | Use of aliases? | no | | yes |
-| Use of environment variables | no | | yes |
-| Configurable settings | no | yes | yes |
+| Configurable settings | yes | yes | yes |
 
 With the configurable options inside its project file, FORD is able to process Doxygen-styled comments which are before the documented object.
 
