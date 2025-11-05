@@ -176,13 +176,17 @@ end program pfio_standalone_test
 
 > The goal of FORD is to be able to reliably produce documentation for modern Fortran software which is informative and nice to look at. The documentation should be easy to write and non-obtrusive within the code. While it will never be as feature-rich as Doxygen, hopefully FORD will be able to provide a good alternative for documenting Fortran projects.
 
-- An automatic documentation generator for modern (1990 onward) Fortran code.
-- Was created to fixed the limitation of Doxygen to handle new features of Fortran.
-- Able to extract information about variables, procedures (functions and subroutines), procedure arguments, derived types, programs, and modules from the source code.
-- Source code can also be preprocessed;.
-- Able to extract documentation from comments in the source code.
-- Uses Markdown to type-set documentation.
-- Able to use LaTeX (through [MathJax](http://www.mathjax.org/))
+- `FORD` is an automatic documentation generator for modern (1990 onward) Fortran code.
+- Was created to fixed the limitation found in other general-purpose documentation tools (such as `Doxygen`) to handle new features of Fortran.
+- Relies on a user-defined [Markdown](https://daringfireball.net/projects/markdown/syntax) project configuration file (named for instance `project_name.md`) providing settings and descriptions.
+   - The settings allow users to define which types of comments can be used for documentation.
+   - Various [options](https://github.com/Fortran-FOSS-Programmers/ford/wiki/Project-File-Options) can be specified in this file, such as where to look for your projects source files, where to output the documentation, and information about the author.
+- Able to extract documentation from comments (typically marked with `!!`) in the source code.
+    - Extract information about variables, procedures (functions and subroutines), procedure arguments, derived types, programs, and modules from the source code.
+- Source code can also be preprocessed.
+- Uses Markdown to type-set documentation:
+   - Documentation, both within the source code and in the project file, is written using Markdown.
+- Includes support for LaTeX within the documentation, allowing for mathematical expressions and advanced typesetting using [MathJax](http://www.mathjax.org/).
 - Able to create a hierarchical set of pages containing general information, not associated with any particular part of the source code.
 - Able to include the contents of other files within the documentation.
 - Symbols (e.g. main code, modules, derived data types) are appropriately coloured.
@@ -190,13 +194,12 @@ end program pfio_standalone_test
    - to download the source code.
    - to individual files, both in their raw form or in HTML with syntax highlighting.
    - between related parts of the software.
-- Use configurable settings to generate documentation. The settings allow users to define which types of comments can be used for documentation.
 - Can add GitHub (Bitbucket), Twitter and LinkedIn pages.
-- Searchable documentation using Tipue Search which supports a wide range of Web browsers. Can search source code as well as procedures, variables, comments, etc.
+- Searchable documentation using `Tipue Search` which supports a wide range of Web browsers. Can search source code as well as procedures, variables, comments, etc.
 
-FORD usage is based on projects. A project is just whatever piece of software you want to document. Normally it would either be a program or a library. Each project will have its own [Markdown](https://daringfireball.net/projects/markdown/syntax) file which contains a description of the project.  Various [options](https://github.com/Fortran-FOSS-Programmers/ford/wiki/Project-File-Options) can be specified in this file, such as where to look for your projects source files, where to output the documentation, and information about the author. Some non-Markdown syntax can also be used with FORD.
 
-Much like in Doxygen, you can use a `@note` environment to place the succeeding documentation into a special boxed paragraph. 
+
+Much like in `Doxygen`, you can use a `@note` environment to place the succeeding documentation into a special boxed paragraph. 
 This syntax may be used at any location in the documentation comment and it will include as the note's contents anything until 
 the first use of `@endnote` (provided there are no new `@note` or other environments, described below, started before then). 
 If no such `@endnote` tag can be found then the note's contents will include until the end of the paragraph where the environment was activated. Other environments which behave the same way are `@warning`, `@todo`, and `@bug`.
